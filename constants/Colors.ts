@@ -1,7 +1,4 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
- */
+//costant//Colors.ts
 
 const tintColorLight = '#0a7ea4';
 const tintColorDark = '#fff';
@@ -11,7 +8,7 @@ const COLOR = {
   Gray2: "#C1C0C8",
   GreenLight: "#29B95C",
   GreenOlive: "#1B3C3D",
-  lueDark: "#0D0650",
+  blueDark: "#0D0650",
   White: "#FFFFFF",
   WhiteLight: "#FAFAFC",
   Black: "#000000",
@@ -20,21 +17,54 @@ const COLOR = {
 
 };
 
-export const Colors = {
-  light: {
-    text: COLOR.GreenOlive,
-    background: COLOR.WhiteLight,
-    tint:  COLOR.TintColorLight,
-    icon: COLOR.GreenOlive,
-    tabIconDefault:  COLOR.TintColorLight,
-    tabIconSelected: COLOR.TintColorLight,
-  },
-  dark: {
-    text: '#ECEDEE',
-    background: '#151718',
-    tint: COLOR.TintColorDark,
-    icon: COLOR.GreenOlive,
-    tabIconDefault: COLOR.TintColorDark,
-    tabIconSelected: COLOR.TintColorDark,
-  },
+export {COLOR};
+
+export type ThemeColors = {
+  text: string;
+  background: string,
+  tint:  string,
+  icon: string,
+  tabIconDefault:  string,
+  tabIconSelected: string,
+  menuBackground: string,
+  menuText: string,
+  accent: string,
+  error: string,
+  success: string,
+  warning: string,
+  [key: string]: string; // For any additional custom colors
 };
+
+export const light: ThemeColors = {
+  text: COLOR.GreenOlive,
+  background: COLOR.WhiteLight,
+  tint:  COLOR.TintColorLight,
+  icon: COLOR.Gray2,
+  tabIconDefault:  COLOR.TintColorLight,
+  tabIconSelected: COLOR.TintColorLight,
+  menuBackground: COLOR.GreenOlive,
+  menuText: COLOR.White,
+  accent: "#03DAC6",
+  error: "#B00020",
+  success: "#00C853",
+  warning: "#FFD600",
+};
+
+export const dark: ThemeColors = {
+  text: '#ECEDEE',
+  background: '#151718',
+  tint: COLOR.TintColorDark,
+  icon: COLOR.GreenOlive,
+  tabIconDefault: COLOR.TintColorDark,
+  tabIconSelected: COLOR.TintColorDark,
+  menuBackground: COLOR.GreenOlive,
+  menuText: COLOR.White,
+  accent: "#03DAC6",
+  error: "#CF6679",
+  success: "#00E676",
+  warning: "#FFEA00",
+};
+
+// Function to switch themes dynamically
+export const getThemeColors = (isDarkMode: boolean): ThemeColors =>
+  isDarkMode ? dark : light;

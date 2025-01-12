@@ -1,12 +1,12 @@
+//app/(tabs)/_layout.tsx
+
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { Platform } from 'react-native';
 
 import { HapticTab } from '@/components/HapticTab';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
+import { getThemeColors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
-
 
 import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
@@ -14,56 +14,59 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const theme = useColorScheme() ?? 'light'; // Use the custom hook
+  const isDarkMode = theme === 'dark';
+  const colors = getThemeColors(isDarkMode); // Get the correct colors for the them
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: '#FFD600', // this is the color of the text
+        tabBarActiveBackgroundColor: colors.menuBackground,
+        tabBarInactiveBackgroundColor: colors.menuBackground,
         headerShown: false,
         tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
         tabBarStyle: Platform.select({
           ios: {
-            // Use a transparent background on iOS to show the blur effect
             position: 'absolute',
           },
-          default: {},
+          default: {
+          },
         }),
       }}>
       <Tabs.Screen
         name="index"
         options={{
           title: 'Начало',
-          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="home-circle" size={29} color="black" />,
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="home-circle" size={29} color={colors.icon}/>,
         }}
       />
       <Tabs.Screen
         name="menu"
         options={{
           title: 'меню',
-          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="microsoft-xbox-controller-menu" size={28} color="black" />,
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="microsoft-xbox-controller-menu" size={28} color={colors.icon} />,
         }}
       />
       <Tabs.Screen
         name="contact"
         options={{
           title: 'контакт',
-          tabBarIcon: ({ color }) => <FontAwesome name="phone" size={28} color="black" />,
+          tabBarIcon: ({ color }) => <FontAwesome name="phone" size={28} color={colors.icon} />,
         }}
       />
       <Tabs.Screen
         name="account"
         options={{
           title: 'потребител',
-          tabBarIcon: ({ color }) =>  <MaterialCommunityIcons name="chef-hat" size={28} color="black" />,
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="chef-hat" size={28} color={colors.icon} />,
         }}
       />
       <Tabs.Screen
         name="basket"
         options={{
           title: 'кошница',
-          tabBarIcon: ({ color }) =><FontAwesome5 name="shopping-cart" size={28} color="black" />,
+          tabBarIcon: ({ color }) => <FontAwesome5 name="shopping-cart" size={28} color={colors.icon} />,
         }}
       />
     </Tabs>

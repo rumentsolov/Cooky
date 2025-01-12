@@ -1,50 +1,24 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+//app/(tabs)/index.tsx
+import React from 'react';
+import { Button } from 'react-native';
+import { MainView } from '@/components/MainView';  // Adjust the path if needed
+import { useTheme } from '@/context/ThemeContext';  // Correct import for the theme context
+import { ThemeProvider } from '@/context/ThemeContext';  // Ensure correct import
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/cooky.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Text now!</ThemedText>
-        <ThemedText>
-          Edit to see changes.
-        </ThemedText>
-      </ThemedView>
-      
-    </ParallaxScrollView>
+    <ThemeProvider> 
+      <MainView title="Welcome" subtitle="Enjoy your journey">
+        <MainView.Text type="default">
+          This is a default styled text using the theme.
+        </MainView.Text>
+        <MainView.Text type="title">
+          This is a title styled text using the theme.
+        </MainView.Text>
+        <MainView.Text type="link" onPress={() => alert('Link clicked!')}>
+          Clickable link styled text.
+        </MainView.Text>
+      </MainView>
+    </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: '50%',
-    width: '100%',
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
