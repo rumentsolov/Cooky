@@ -1,7 +1,8 @@
+//context/slides_1.js
 export default [
     {
         id: '1',
-        title: "Как работи",
+        title: "1. Избери рецепти",
         describtion: "Избери от 24 рецепти, които всяка седмица приготвяме специално за теб. Поръчките приключват всеки четвъртък в 21:00",
         image: require('@/assets/images/menu.png'),
     },

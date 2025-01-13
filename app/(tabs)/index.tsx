@@ -5,6 +5,7 @@ import { LAYOUTS } from '@/constants/Layouts'; // Import Layout constants
 import { ThemeProvider } from '@/context/ThemeContext';  // Ensure correct import
 import { COLOR } from '@/constants/Colors';
 import SwipeView from '@/components/SwipeView'
+import slides from '@/context/slides_1'; // Import your slides data
 
 export default function HomeScreen() {
   return (
@@ -28,7 +29,7 @@ export default function HomeScreen() {
         <Vw.Text type="button">button ABC</Vw.Text>
         <Vw.Text type="link" onPress={() => alert('Link clicked!')}>link</Vw.Text>
         */}
-        <SwipeView/>
+         <SwipeView slides={slides} />
  
 
       </Vw>
