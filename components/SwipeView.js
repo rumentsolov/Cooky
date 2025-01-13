@@ -19,6 +19,7 @@ export default function SwipeView({ slides }) {
     setCurrentIndex(viewableItems[0].index);
   }).current;
 
+  {/*pagingEnabled={slides.length} - this will make swipe not on pages*/}
   return (
     <Vw alignItems="center" justifyContent="center">
       <Vw styles={{ flex: slides.length }}>
@@ -26,8 +27,8 @@ export default function SwipeView({ slides }) {
           data={slides} // Pass slides dynamically here
           renderItem={({ item }) => <SwipeViewItem item={item} />}
           horizontal
-          showsHorizontalScrollIndicator={false}
           pagingEnabled
+          showsHorizontalScrollIndicator={false}
           bounces={false}
           keyExtractor={(item) => item.id}
           onScroll={Animated.event(
@@ -41,7 +42,7 @@ export default function SwipeView({ slides }) {
         />
       </Vw>
       <Vw alignItems="center" justifyContent="center">
-        <Paginator data={slides}/>
+        <Paginator data={slides} scrollX={scrollX}/>
       </Vw>
       
     </Vw>
