@@ -29,16 +29,7 @@
       "favicon": "./assets/images/cooky.png"
     },
     "plugins": [
-      "expo-router",
-      [
-        "expo-splash-screen",
-        {
-          "image": "./assets/images/cooky.png",
-          "imageWidth": 100,
-          "resizeMode": "contain",
-          "backgroundColor": "#1B3C3D"
-        }
-      ]
+
     ],
     "experiments": {
       "typedRoutes": true
