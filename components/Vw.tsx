@@ -1,10 +1,10 @@
-//components/Vw.tsx
+// components/Vw.tsx
 import React from 'react';
-import { StyleSheet, type ViewProps, View, Text, type TextProps, ScrollView, Image } from 'react-native';
+import { StyleSheet, type ViewProps, View, Text, type TextProps, ScrollView } from 'react-native';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { FONTSIZE } from '@/constants/Fonts';
-import { LAYOUTS } from '@/constants/Layouts';  // Import the container styles
+import { LAYOUTS } from '@/constants/Layouts';
 
 export type VwProps = ViewProps & {
   title?: string; // Optional title
@@ -19,14 +19,15 @@ export function Vw({ title, subtitle, style, children, ...otherProps }: VwProps)
   const textColor = useThemeColor({}, 'text');
 
   return (
-    <SafeAreaView style={[LAYOUTS.container, { backgroundColor }, style]} {...otherProps}>
-      <ScrollView contentContainerStyle={LAYOUTS.scrollContent} showsVerticalScrollIndicator={false}>
-        {title && <Text style={[fontsize.title, { color: textColor }]}>{title}</Text>}
-        {subtitle && <Text style={[fontsize.semiBold, { color: textColor }]}>{subtitle}</Text>}
-        
-        <View style={LAYOUTS.contentContainer}>
-          {children}
-        </View>
+    <SafeAreaView style={[LAYOUTS.container, { backgroundColor }]} {...otherProps}>
+      {title && <Text style={[fontsize.title, { color: textColor }]}>{title}</Text>}
+      {subtitle && <Text style={[fontsize.semiBold, { color: textColor }]}>{subtitle}</Text>}
+
+      <ScrollView
+        contentContainerStyle={[LAYOUTS.container, style]} // Apply scroll-specific styles here
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={LAYOUTS.container}>{children}</View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -49,6 +50,9 @@ export type ThemedTextProps = TextProps & {
   'link';
   lightColor?: string;
   darkColor?: string;
+  align?: 'center' | 'left' | 'right'; // Text alignment
+  paddingLeft?: number; // Padding left
+  paddingRight?: number; // Padding right
 };
 
 Vw.Text = function ThemedText({
@@ -56,14 +60,28 @@ Vw.Text = function ThemedText({
   style,
   lightColor,
   darkColor,
+  align = 'left', // Default alignment is left
+  paddingLeft = 0, // Default paddingLeft is 0
+  paddingRight = 0, // Default paddingRight is 0
   ...props
 }: ThemedTextProps) {
   const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
+
+  const alignmentStyle = {
+    textAlign: align, // Align text based on 'left', 'center', or 'right'
+  };
+
+  const paddingStyle = {
+    paddingLeft,
+    paddingRight,
+  };
 
   return (
     <Text
       style={[
         { color },
+        alignmentStyle, // Apply the alignment style
+        paddingStyle, // Apply the padding style
         type === 'default'    && fontsize.default,
         type === 'xSmall'     && fontsize.xSmall,
         type === 'small'      && fontsize.small,

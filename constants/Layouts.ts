@@ -1,29 +1,53 @@
-// constants/Layouts.ts
 import { StyleSheet } from 'react-native';
+import { COLOR } from './Colors';
 
 export const LAYOUTS = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    resizeMode: 'contain',
   },
-  imageContainer: {
-    width: '100%',
-    height: 200,
-    marginBottom: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
+  swipeContainer: {
+    flex:1,
+    justifyContent: "center",
+    alignItems: "center",
   },
-  contentContainer: {
-    flex: 1,
-    marginTop: 16,
+  imageContainerTop: {
+    marginTop: 30,
+    padding: 0,
+    backgroundColor: COLOR.GreenOlive,
+    alignItems: 'flex-start',
   },
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  imageTop: {
+    width: 50,
+    height: 50,
+    marginBottom: 0,
+    borderRadius: 0,
+    resizeMode: 'contain',
   },
   scrollContent: {
-    paddingBottom: 16, // Adjust padding as needed
+    padding: 0,
+    paddingBottom: 64,
   },
-  // Add more reusable layout styles as needed
+  contentContainer: {
+    flexGrow: 1,
+    alignItems: 'center',
+  },
+  imageContainer: {
+    width: '80%',
+    height: 80,
+    resizeMode: 'contain',
+    marginBottom: 16,
+  },
+  titleContainer: {
+    marginBottom: 16,
+    textAlign: 'center',
+  },
+  pagerView: {
+    flex: 1,
+  },
+  page: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
