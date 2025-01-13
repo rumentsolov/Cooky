@@ -4,30 +4,33 @@ const tintColorLight = '#0a7ea4';
 const tintColorDark = '#fff';
 
 const COLOR = {
-  Gray: "#83829A",
-  Gray2: "#C1C0C8",
-  GreenLight: "#29B95C",
-  GreenOlive: "#1B3C3D",
-  blueDark: "#0D0650",
+  Gray: '#83829A',
+  Gray2: '#C1C0C8',
+  GreenLight: '#29B95C',
+  GreenOlive: '#1B3C3D',
   White: "#FFFFFF",
   WhiteLight: "#FAFAFC",
   Black: "#000000",
-  TintColorLight: '#0a7ea4',
-  TintColorDark:  '#fff'
-
+  YellowOiled: '#FFDC7F',
+  BlueLight: '#78B7D0',
+  BlueDark: '#0D0650',
+  BlueDark2: '#16325B',
+  BlueSea: '#227B94'
 };
 
 export {COLOR};
 
 export type ThemeColors = {
-  text: string;
+  text: string,
   background: string,
-  tint:  string,
-  icon: string,
-  tabIconDefault:  string,
-  tabIconSelected: string,
+
+  IconDefault: string,
+  IconSelected: string,
+
   menuBackground: string,
-  menuText: string,
+  menuTextItemSelected: string,
+  menuTextItemNotSelected: string,
+
   accent: string,
   error: string,
   success: string,
@@ -37,32 +40,37 @@ export type ThemeColors = {
 
 export const light: ThemeColors = {
   text: COLOR.GreenOlive,
+  
   background: COLOR.WhiteLight,
-  tint:  COLOR.TintColorLight,
-  icon: COLOR.Gray2,
-  tabIconDefault:  COLOR.TintColorLight,
-  tabIconSelected: COLOR.TintColorLight,
+
+  IconDefault:  COLOR.GreenLight,
+  IconSelected: COLOR.YellowOiled,
+
   menuBackground: COLOR.GreenOlive,
-  menuText: COLOR.White,
-  accent: "#03DAC6",
-  error: "#B00020",
-  success: "#00C853",
-  warning: "#FFD600",
+  menuTextItemSelected: COLOR.BlueLight,
+  menuTextItemNotSelected: COLOR.WhiteLight,
+
+  accent: COLOR.YellowOiled,
+  error: COLOR.YellowOiled,
+  success: COLOR.YellowOiled,
+  warning: COLOR.YellowOiled,
 };
 
 export const dark: ThemeColors = {
-  text: '#ECEDEE',
-  background: '#151718',
-  tint: COLOR.TintColorDark,
-  icon: COLOR.GreenOlive,
-  tabIconDefault: COLOR.TintColorDark,
-  tabIconSelected: COLOR.TintColorDark,
+  text: COLOR.GreenOlive,
+  background: COLOR.YellowOiled,
+
+  IconDefault:  COLOR.BlueLight,
+  IconSelected: COLOR.WhiteLight,
+
   menuBackground: COLOR.GreenOlive,
-  menuText: COLOR.White,
-  accent: "#03DAC6",
-  error: "#CF6679",
-  success: "#00E676",
-  warning: "#FFEA00",
+  menuTextItemSelected: COLOR.BlueLight,
+  menuTextItemNotSelected: COLOR.WhiteLight,
+
+  accent: COLOR.YellowOiled,
+  error: COLOR.YellowOiled,
+  success: COLOR.YellowOiled,
+  warning: COLOR.YellowOiled,
 };
 
 // Function to switch themes dynamically

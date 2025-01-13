@@ -1,5 +1,3 @@
-//app/(tabs)/_layout.tsx
-
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { Platform } from 'react-native';
@@ -16,12 +14,13 @@ import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 export default function TabLayout() {
   const theme = useColorScheme() ?? 'light'; // Use the custom hook
   const isDarkMode = theme === 'dark';
-  const colors = getThemeColors(isDarkMode); // Get the correct colors for the them
+  const colors = getThemeColors(isDarkMode); // Get the correct colors for the theme
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: '#FFD600', // this is the color of the text
+        tabBarActiveTintColor: colors.IconSelected, // this is the color of the icon when active
+        tabBarInactiveTintColor: colors.IconDefault, // this is the color of the icon when inactive
         tabBarActiveBackgroundColor: colors.menuBackground,
         tabBarInactiveBackgroundColor: colors.menuBackground,
         headerShown: false,
@@ -30,43 +29,52 @@ export default function TabLayout() {
           ios: {
             position: 'absolute',
           },
-          default: {
-          },
+          default: {},
         }),
       }}>
       <Tabs.Screen
         name="index"
         options={{
           title: 'Начало',
-          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="home-circle" size={29} color={colors.icon}/>,
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="home-circle" size={29} color={color} /> // Pass the color prop here
+          ),
         }}
       />
       <Tabs.Screen
         name="menu"
         options={{
           title: 'меню',
-          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="microsoft-xbox-controller-menu" size={28} color={colors.icon} />,
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="microsoft-xbox-controller-menu" size={28} color={color} /> // Pass the color prop here
+          ),
         }}
       />
       <Tabs.Screen
         name="contact"
         options={{
           title: 'контакт',
-          tabBarIcon: ({ color }) => <FontAwesome name="phone" size={28} color={colors.icon} />,
+          tabBarIcon: ({ color }) => (
+            <FontAwesome name="phone" size={28} color={color} /> // Pass the color prop here
+          ),
         }}
       />
       <Tabs.Screen
         name="account"
         options={{
           title: 'потребител',
-          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="chef-hat" size={28} color={colors.icon} />,
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="chef-hat" size={28} color={color} /> // Pass the color prop here
+          ),
         }}
       />
       <Tabs.Screen
         name="basket"
         options={{
           title: 'кошница',
-          tabBarIcon: ({ color }) => <FontAwesome5 name="shopping-cart" size={28} color={colors.icon} />,
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="shopping-cart" size={28} color={color} /> // Pass the color prop here
+          ),
         }}
       />
     </Tabs>

@@ -2,6 +2,7 @@
 import React from 'react';
 import { StyleSheet, type ViewProps, View, Text, type TextProps } from 'react-native';
 import { useThemeColor } from '@/hooks/useThemeColor';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export type MainViewProps = ViewProps & {
   title?: string; // Optional title
@@ -14,11 +15,11 @@ export function MainView({ title, subtitle, style, children, ...otherProps }: Ma
   const textColor = useThemeColor({}, 'text');
 
   return (
-    <View style={[styles.container, { backgroundColor }, style]} {...otherProps}>
+    <SafeAreaView style={[styles.container, { backgroundColor }, style]} {...otherProps}>
       {title && <Text style={[styles.title, { color: textColor }]}>{title}</Text>}
       {subtitle && <Text style={[styles.subtitle, { color: textColor }]}>{subtitle}</Text>}
       <View style={styles.content}>{children}</View>
-    </View>
+    </SafeAreaView>
   );
 }
 
