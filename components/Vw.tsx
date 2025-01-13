@@ -1,0 +1,85 @@
+//components/Vw.tsx
+import React from 'react';
+import { StyleSheet, type ViewProps, View, Text, type TextProps, ScrollView, Image } from 'react-native';
+import { useThemeColor } from '@/hooks/useThemeColor';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { FONTSIZE } from '@/constants/Fonts';
+import { LAYOUTS } from '@/constants/Layouts';  // Import the container styles
+
+export type VwProps = ViewProps & {
+  title?: string; // Optional title
+  subtitle?: string; // Optional subtitle
+  children?: React.ReactNode; // Nested components
+};
+
+var fontsize = FONTSIZE();
+
+export function Vw({ title, subtitle, style, children, ...otherProps }: VwProps) {
+  const backgroundColor = useThemeColor({}, 'background');
+  const textColor = useThemeColor({}, 'text');
+
+  return (
+    <SafeAreaView style={[LAYOUTS.container, { backgroundColor }, style]} {...otherProps}>
+      <ScrollView contentContainerStyle={LAYOUTS.scrollContent} showsVerticalScrollIndicator={false}>
+        {title && <Text style={[fontsize.title, { color: textColor }]}>{title}</Text>}
+        {subtitle && <Text style={[fontsize.semiBold, { color: textColor }]}>{subtitle}</Text>}
+        
+        <View style={LAYOUTS.contentContainer}>
+          {children}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
+
+export type ThemedTextProps = TextProps & {
+  type?: 
+  'default' | 
+  'xSmall' | 
+  'small' |
+  'medium' |
+  'large'|
+  'xLarge'|
+  'xxLarge'|
+  'title'|
+  'semiBold' | 
+  'bold'|
+  'describtion'|
+  'button'|
+  'link';
+  lightColor?: string;
+  darkColor?: string;
+};
+
+Vw.Text = function ThemedText({
+  type = 'default',
+  style,
+  lightColor,
+  darkColor,
+  ...props
+}: ThemedTextProps) {
+  const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
+
+  return (
+    <Text
+      style={[
+        { color },
+        type === 'default'    && fontsize.default,
+        type === 'xSmall'     && fontsize.xSmall,
+        type === 'small'      && fontsize.small,
+        type === 'medium'     && fontsize.medium,
+        type === 'large'      && fontsize.large,
+        type === 'xLarge'     && fontsize.xLarge,
+        type === 'xxLarge'    && fontsize.xxLarge,
+        type === 'title'      && fontsize.title,
+        type === 'semiBold'   && fontsize.semiBold,
+        type === 'bold'       && fontsize.bold,
+        type === 'describtion'&& fontsize.describtion,
+        type === 'button'     && fontsize.button,
+        type === 'link'       && fontsize.link,
+        style,
+      ]}
+      {...props}
+    />
+  );
+};

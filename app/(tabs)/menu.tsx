@@ -1,6 +1,6 @@
 import { ThemeProvider } from '@/context/ThemeContext';  // Ensure correct import
 import { Button, View, Image, StyleSheet } from 'react-native';
-import { MainView } from '@/components/MainView';  // Adjust the path if needed
+import { Vw } from '@/components/Vw';  // Adjust the path if needed
 
 export default function Menu() {
   return (

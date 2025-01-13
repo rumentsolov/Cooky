@@ -8,10 +8,10 @@
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "splash":{
-      "image" :"./assets/images/cooky.png",
+    "splash": {
+      "image": "./assets/images/cooky.png",
       "imageWidth": 100,
-      "resizeMode" :"contain",
+      "resizeMode": "contain",
       "backgroundColor": "#1B3C3D"
     },
     "ios": {
@@ -28,9 +28,7 @@
       "output": "static",
       "favicon": "./assets/images/cooky.png"
     },
-    "plugins": [
-
-    ],
+    "plugins": [],
     "experiments": {
       "typedRoutes": true
     }
