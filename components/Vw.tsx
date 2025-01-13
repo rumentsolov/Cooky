@@ -63,8 +63,13 @@ Vw.Text = function ThemedText({
   align = 'left', // Default alignment is left
   paddingLeft = 0, // Default paddingLeft is 0
   paddingRight = 0, // Default paddingRight is 0
+  paddingTop = 0, // Default paddingTop is 0
+  paddingBottom = 0, // Default paddingBottom is 0
   ...props
-}: ThemedTextProps) {
+}: ThemedTextProps & {
+  paddingTop?: number; // Padding top
+  paddingBottom?: number; // Padding bottom
+}) {
   const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
 
   const alignmentStyle = {
@@ -74,6 +79,8 @@ Vw.Text = function ThemedText({
   const paddingStyle = {
     paddingLeft,
     paddingRight,
+    paddingTop,
+    paddingBottom,
   };
 
   return (

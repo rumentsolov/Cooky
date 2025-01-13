@@ -1,7 +1,7 @@
 import React from "react";
 import {View , StyleSheet , Image , Animated , useWindowDimensions } from "react-native";
 
-import { LAYOUTS } from '@/constants/Layouts'; // Import Layout constants
+import { LAYOUTS } from '@/constants/Layouts';
 
 
 export default Paginator = ({data , scrollX}) => {

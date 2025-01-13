@@ -12,9 +12,9 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 
 export default function TabLayout() {
-  const theme = useColorScheme() ?? 'light'; // Use the custom hook
+  const theme = useColorScheme() ?? 'light';
   const isDarkMode = theme === 'dark';
-  const colors = getThemeColors(isDarkMode); // Get the correct colors for the theme
+  const colors = getThemeColors(isDarkMode); 
 
   return (
     <Tabs

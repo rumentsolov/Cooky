@@ -15,7 +15,8 @@ const COLOR = {
   BlueLight: '#78B7D0',
   BlueDark: '#0D0650',
   BlueDark2: '#16325B',
-  BlueSea: '#227B94'
+  BlueSea: '#227B94',
+  Transparent: 'rgba(0, 0, 0, 0)'
 };
 
 export {COLOR};
@@ -30,6 +31,8 @@ export type ThemeColors = {
   menuBackground: string,
   menuTextItemSelected: string,
   menuTextItemNotSelected: string,
+
+  button: string,
 
   accent: string,
   error: string,
@@ -50,6 +53,8 @@ export const light: ThemeColors = {
   menuTextItemSelected: COLOR.BlueLight,
   menuTextItemNotSelected: COLOR.WhiteLight,
 
+  button: COLOR.GreenLight,
+
   accent: COLOR.YellowOiled,
   error: COLOR.YellowOiled,
   success: COLOR.YellowOiled,
@@ -57,15 +62,18 @@ export const light: ThemeColors = {
 };
 
 export const dark: ThemeColors = {
-  text: COLOR.GreenOlive,
-  background: COLOR.YellowOiled,
+  text: COLOR.Gray2,
+  
+  background: COLOR.GreenOlive,
 
-  IconDefault:  COLOR.BlueLight,
-  IconSelected: COLOR.WhiteLight,
+  IconDefault:  COLOR.GreenLight,
+  IconSelected: COLOR.YellowOiled,
 
   menuBackground: COLOR.GreenOlive,
   menuTextItemSelected: COLOR.BlueLight,
   menuTextItemNotSelected: COLOR.WhiteLight,
+
+  button: COLOR.GreenLight,
 
   accent: COLOR.YellowOiled,
   error: COLOR.YellowOiled,
