@@ -6,10 +6,15 @@ import { ThemeProvider } from '@/context/ThemeContext';  // Ensure correct impor
 import { COLOR } from '@/constants/Colors';
 import SwipeView from '@/components/SwipeView'
 import slides from '@/context/slides_1'; // Import your slides data
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
   return (
-    <ThemeProvider> 
+    //<SafeAreaView>
+      <ThemeProvider> 
+      
+
+      
       <View style={LAYOUTS.imageContainerTop}>
         <Image source={require('@/assets/images/cooky.png')} style={LAYOUTS.imageTop} />
       </View>
@@ -33,6 +38,8 @@ export default function HomeScreen() {
  
 
       </Vw>
-    </ThemeProvider>
+      
+      </ThemeProvider>
+    //</SafeAreaView>
   );
 }

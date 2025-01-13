@@ -4,7 +4,7 @@ import { COLOR } from './Colors';
 export const LAYOUTS = StyleSheet.create({
   container: {
     flex: 1,
-    resizeMode: 'contain',
+    resizeMode: 'contain'
   },
   swipeContainer: {
     flex:1,
@@ -15,7 +15,6 @@ export const LAYOUTS = StyleSheet.create({
     marginTop: 30,
     padding: 0,
     backgroundColor: COLOR.GreenOlive,
-    alignItems: 'flex-start',
   },
   imageTop: {
     width: 50,
@@ -47,7 +46,11 @@ export const LAYOUTS = StyleSheet.create({
   },
   page: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  },
+  dot: {
+    height:10,
+    borderRadius:5,
+    backgroundColor:COLOR.GreenLight,
+    marginHorizontal:8
   },
 });

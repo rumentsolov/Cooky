@@ -1,9 +1,10 @@
 // components/SwipeView.tsx
-import React, { useState, useRef } from "react";
-import { View, FlatList, Animated } from "react-native";
-import { Vw } from "@/components/Vw";
-import { LAYOUTS } from "@/constants/Layouts"; // Import Layout constants
-import SwipeViewItem from "@/components/SwipeViewItem"; // Assuming this is the item component
+import React, { useState, useRef } from 'react';
+import { View, FlatList, Animated } from 'react-native';
+import { Vw } from '@/components/Vw';
+import { LAYOUTS } from '@/constants/Layouts'; // Import Layout constants
+import SwipeViewItem from '@/components/SwipeViewItem'; // Assuming this is the item component
+import Paginator from '@/components/Paginator'
 
 export default function SwipeView({ slides }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -19,7 +20,7 @@ export default function SwipeView({ slides }) {
   }).current;
 
   return (
-    <Vw style={LAYOUTS.swipeContainer}>
+    <Vw alignItems="center" justifyContent="center">
       <Vw styles={{ flex: slides.length }}>
         <FlatList
           data={slides} // Pass slides dynamically here
@@ -39,6 +40,10 @@ export default function SwipeView({ slides }) {
           ref={slideRef}
         />
       </Vw>
+      <Vw alignItems="center" justifyContent="center">
+        <Paginator data={slides}/>
+      </Vw>
+      
     </Vw>
   );
 }

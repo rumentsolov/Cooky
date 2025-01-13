@@ -19,7 +19,7 @@ export function Vw({ title, subtitle, style, children, ...otherProps }: VwProps)
   const textColor = useThemeColor({}, 'text');
 
   return (
-    <SafeAreaView style={[LAYOUTS.container, { backgroundColor }]} {...otherProps}>
+    <ScrollView style={[LAYOUTS.container, { backgroundColor }]} {...otherProps}>
       {title && <Text style={[fontsize.title, { color: textColor }]}>{title}</Text>}
       {subtitle && <Text style={[fontsize.semiBold, { color: textColor }]}>{subtitle}</Text>}
 
@@ -29,7 +29,7 @@ export function Vw({ title, subtitle, style, children, ...otherProps }: VwProps)
       >
         <View style={LAYOUTS.container}>{children}</View>
       </ScrollView>
-    </SafeAreaView>
+    </ScrollView>
   );
 }
 
