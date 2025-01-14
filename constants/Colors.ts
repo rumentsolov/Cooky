@@ -16,7 +16,8 @@ const COLOR = {
   BlueDark: '#0D0650',
   BlueDark2: '#16325B',
   BlueSea: '#227B94',
-  Transparent: 'rgba(0, 0, 0, 0)'
+  Transparent: 'rgba(0, 0, 0, 0)',
+  ShadowColor: '#000'
 };
 
 export {COLOR};
@@ -33,7 +34,9 @@ export type ThemeColors = {
   menuTextItemNotSelected: string,
 
   button: string,
+  shadowColor: string,
 
+  semiText: string,
   accent: string,
   error: string,
   success: string,
@@ -54,6 +57,9 @@ export const light: ThemeColors = {
   menuTextItemNotSelected: COLOR.WhiteLight,
 
   button: COLOR.GreenLight,
+  shadowColor: COLOR.ShadowColor,
+
+  semiText: COLOR.Gray2,
 
   accent: COLOR.YellowOiled,
   error: COLOR.YellowOiled,
@@ -62,7 +68,7 @@ export const light: ThemeColors = {
 };
 
 export const dark: ThemeColors = {
-  text: COLOR.Gray2,
+  text: COLOR.WhiteLight,
   
   background: COLOR.GreenOlive,
 
@@ -74,6 +80,9 @@ export const dark: ThemeColors = {
   menuTextItemNotSelected: COLOR.WhiteLight,
 
   button: COLOR.GreenLight,
+  shadowColor: COLOR.ShadowColor,
+
+  semiText: COLOR.Gray,
 
   accent: COLOR.YellowOiled,
   error: COLOR.YellowOiled,

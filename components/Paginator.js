@@ -1,13 +1,14 @@
 import React from "react";
 import {View , StyleSheet , Image , Animated , useWindowDimensions } from "react-native";
-
+import applyShadow from '@/components/Shadows';
 import { LAYOUTS } from '@/constants/Layouts';
-
+import { useTheme } from '@/context/ThemeContext';
 
 export default Paginator = ({data , scrollX}) => {
 
     const { width } = useWindowDimensions();
-    
+    const { colors } = useTheme();
+
     return (
         <View style={{ flexDirection: 'row', height: 64, alignItems: 'center' }}>
           {/* Checks if data is not empty before mapping */}
@@ -21,7 +22,10 @@ export default Paginator = ({data , scrollX}) => {
                 extrapolate: 'clamp',
               });
     
-              return <Animated.View style={[LAYOUTS.dot, { width: dotWidth }]} key={i.toString()} />;
+              return <Animated.View style={[LAYOUTS.dot, { 
+                width: dotWidth,
+                ...applyShadow('heavy'),
+              }]} key={i.toString()} />;
             })
           ) : (
             <View>

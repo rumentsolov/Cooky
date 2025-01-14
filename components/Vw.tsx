@@ -1,4 +1,3 @@
-// components/Vw.tsx
 import React from 'react';
 import { StyleSheet, type ViewProps, View, Text, type TextProps, ScrollView } from 'react-native';
 import { useThemeColor } from '@/hooks/useThemeColor';
@@ -10,28 +9,47 @@ export type VwProps = ViewProps & {
   title?: string; // Optional title
   subtitle?: string; // Optional subtitle
   children?: React.ReactNode; // Nested components
+  backgroundColor?: string; // Custom background color
 };
 
 var fontsize = FONTSIZE();
 
-export function Vw({ title, subtitle, style, children, ...otherProps }: VwProps) {
-  const backgroundColor = useThemeColor({}, 'background');
+
+export function Vw({ title, subtitle, style, backgroundColor: customBgColor, children, ...otherProps }: VwProps) {
+  const themeBackgroundColor = useThemeColor({}, 'background');
+  const backgroundColor = customBgColor || themeBackgroundColor; // Use custom color if provided
+
   const textColor = useThemeColor({}, 'text');
 
   return (
-    <ScrollView style={[LAYOUTS.container, { backgroundColor }]} {...otherProps}>
+    <View style={[LAYOUTS.container, { backgroundColor }, style]} {...otherProps}>
       {title && <Text style={[fontsize.title, { color: textColor }]}>{title}</Text>}
       {subtitle && <Text style={[fontsize.semiBold, { color: textColor }]}>{subtitle}</Text>}
-
-      <ScrollView
-        contentContainerStyle={[LAYOUTS.container, style]} // Apply scroll-specific styles here
-        showsVerticalScrollIndicator={false}
-      >
-        <View style={LAYOUTS.container}>{children}</View>
-      </ScrollView>
-    </ScrollView>
+      <View style={LAYOUTS.container}>
+        {children}
+      </View>
+    </View>
   );
 }
+
+
+Vw.Scrollable = function VwScrollable({ title, subtitle, style, backgroundColor: customBgColor, children, ...otherProps }: VwProps) {
+  const themeBackgroundColor = useThemeColor({}, 'background');
+  const backgroundColor = customBgColor || themeBackgroundColor; // Use custom color if provided
+
+  const textColor = useThemeColor({}, 'text');
+
+  return (
+    <ScrollView style={[LAYOUTS.container, { backgroundColor }, style]} {...otherProps}>
+      {title && <Text style={[fontsize.title, { color: textColor }]}>{title}</Text>}
+      {subtitle && <Text style={[fontsize.semiBold, { color: textColor }]}>{subtitle}</Text>}
+      <View style={LAYOUTS.container}>
+        {children}
+      </View>
+    </ScrollView>
+  );
+};
+
 
 export type ThemedTextProps = TextProps & {
   type?: 
@@ -50,7 +68,7 @@ export type ThemedTextProps = TextProps & {
   'link';
   lightColor?: string;
   darkColor?: string;
-  align?: 'center' | 'left' | 'right'; // Text alignment
+  align?: 'center' | 'left' | 'right'; 
   paddingLeft?: number; // Padding left
   paddingRight?: number; // Padding right
 };
@@ -73,7 +91,7 @@ Vw.Text = function ThemedText({
   const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
 
   const alignmentStyle = {
-    textAlign: align, // Align text based on 'left', 'center', or 'right'
+    textAlign: align, 
   };
 
   const paddingStyle = {
@@ -87,8 +105,8 @@ Vw.Text = function ThemedText({
     <Text
       style={[
         { color },
-        alignmentStyle, // Apply the alignment style
-        paddingStyle, // Apply the padding style
+        alignmentStyle, 
+        paddingStyle, 
         type === 'default'    && fontsize.default,
         type === 'xSmall'     && fontsize.xSmall,
         type === 'small'      && fontsize.small,

@@ -20,8 +20,9 @@ export const LAYOUTS = StyleSheet.create({
     backgroundColor: COLOR.GreenOlive,
   },
   imageTop: {
-    width: 50,
-    height: 50,
+    flex:0.3,
+    width: 40,
+    height: 40,
     marginBottom: 0,
     borderRadius: 0,
     resizeMode: 'contain',
@@ -32,7 +33,7 @@ export const LAYOUTS = StyleSheet.create({
     paddingBottom: 64,
   },
   contentContainer: {
-    flexGrow: 1,
+    flexGrow: 0.7,
     alignItems: 'center',
   },
   imageContainer: {
@@ -69,7 +70,7 @@ export const LAYOUTS = StyleSheet.create({
     alignSelf: 'center',
   },
   buttonContainer: {
-    marginBottom: 20,
+    marginBottom: 0,
     width: '90%',
     alignSelf: 'center',
    
