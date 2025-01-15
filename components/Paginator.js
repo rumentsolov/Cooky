@@ -1,6 +1,8 @@
+//components/Paginator.js
+
 import React from "react";
 import {View , StyleSheet , Image , Animated , useWindowDimensions } from "react-native";
-import applyShadow from '@/components/Shadows';
+import applyShadow from '@/utils/Shadows';
 import { LAYOUTS } from '@/constants/Layouts';
 import { useTheme } from '@/context/ThemeContext';
 
@@ -10,7 +12,7 @@ export default Paginator = ({data , scrollX}) => {
     const { colors } = useTheme();
 
     return (
-        <View style={{ flexDirection: 'row', height: 64, alignItems: 'center' }}>
+        <View style={{ flexDirection: 'row', height: 30, alignItems: 'center', paddingBottom:10 }}>
           {/* Checks if data is not empty before mapping */}
           {data.length > 0 ? (
             data.map((_, i) => {
@@ -24,7 +26,8 @@ export default Paginator = ({data , scrollX}) => {
     
               return <Animated.View style={[LAYOUTS.dot, { 
                 width: dotWidth,
-                ...applyShadow('heavy'),
+                //backgroundColor: colors.background || '#000', // Задаване на фон
+                ...applyShadow()
               }]} key={i.toString()} />;
             })
           ) : (

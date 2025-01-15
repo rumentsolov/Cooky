@@ -8,6 +8,8 @@ import SwipeViewItem from "@/components/SwipeViewItem";3
 import { useTheme } from '@/context/ThemeContext'; 
 import Paginator from "@/components/Paginator";
 import AntDesign from "@expo/vector-icons/AntDesign"; // Import AntDesign icons
+import applyShadow from '@/utils/Shadows';
+
 
 export default function SwipeView({ slides }) {
   const { colors } = useTheme();
@@ -80,31 +82,15 @@ export default function SwipeView({ slides }) {
 
       {/* Left Arrow */}
       <TouchableOpacity
-        style={{
-          position: "absolute",
-          left: 20,
-          top: "0%",
-          zIndex: 1,
-          backgroundColor: colors.Transperent,
-          padding: 10,
-          borderRadius: 50,
-        }}
+        style={[LAYOUTS.arrowContainerLeft, { left: 20 }, applyShadow()]}
         onPress={goToPrevSlide}
       >
-        <AntDesign name="left" size={32} color={ colors.button} />
+        <AntDesign name="left" size={32} color={ colors.button}/>
       </TouchableOpacity>
 
       {/* Right Arrow */}
       <TouchableOpacity
-        style={{
-          position: "absolute",
-          right: 20,
-          top: "0%",
-          zIndex: 1,
-          backgroundColor:  colors.Transperent,
-          padding: 10,
-          borderRadius: 50,
-        }}
+        style={[LAYOUTS.arrowContainerRight, { right: 20 }, applyShadow()]}
         onPress={goToNextSlide}
       >
         <AntDesign name="right" size={32}  color={ colors.button} />

@@ -1,61 +1,60 @@
 // components/Btn.tsx
 import React from 'react';
-import { TouchableOpacity, Text, ViewStyle } from 'react-native';
+import { TouchableOpacity, StyleSheet } from 'react-native';
 import { useTheme } from '@/context/ThemeContext';
 import { Vw } from '@/components/Vw';
-import applyShadow from '@/components/Shadows'; // Import your shadow function
+import applyShadow from '@/utils/Shadows';
+import { LAYOUTS } from '@/constants/Layouts';
 
-interface BtnProps {
+const Btn: React.FC<{
   title: string;
+  icon?: React.ReactNode; // Optional icon component
   onPress: () => void;
-  style?: object;  // Optional style override
-  disabled?: boolean; // Optional disabled prop
-  alignment?: 'flex-start' | 'center' | 'flex-end';  // New prop for alignment
-  shadowLevel?: 'light' | 'medium' | 'heavy'; // New prop for shadow level
-}
+  style?: object; // Allow custom style override
+  alignment?: 'flex-start' | 'center' | 'flex-end'; // Alignment option
+  buttonColor?: string; // Custom color for the button
+}> = ({ title, icon,onPress, style, alignment = 'center' , buttonColor }) => {
 
-const Btn: React.FC<BtnProps> = ({
-  title,
-  onPress,
-  style,
-  disabled = false,
-  alignment = 'center',  // Default to 'center' alignment
-  shadowLevel = 'light',  // Default to 'light' shadow
-}) => {
   const { colors } = useTheme();
 
-  // Get the shadow style for the button based on shadowLevel and theme color
-  const shadowStyle = applyShadow(shadowLevel, colors.shadowColor);
 
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={[
-        {
-          backgroundColor: disabled ? colors.BtnDisabled : colors.button, // Apply different color when disabled
-          paddingVertical: 10,
-          paddingHorizontal: 20,
-          borderRadius: 15,
-          justifyContent: 'center',
-          alignItems: 'center',
-          alignSelf: alignment,  // Apply the alignment here
-          marginTop: 20,
-          ...applyShadow('heavy', colors.button),
-        },
-        style,  // Allow custom styles to be passed in
-      ]}
-      disabled={disabled}
-    >
-      <Vw.Text
-        type="default"
-        align="center"
-        lightColor={colors.menuTextItemNotSelected}
-        darkColor={colors.menuTextItemNotSelected}
+    <Vw style={LAYOUTS.paddingLR25Container}>
+      <TouchableOpacity
+        onPress={onPress}
+        style={[
+          {
+            backgroundColor:buttonColor||colors.button,
+            alignSelf: alignment,
+            borderRadius: 25, 
+            paddingVertical: 14,
+            paddingHorizontal: 18,
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: icon ? 'row' : 'column', 
+          },
+          applyShadow(), // Apply shadows
+          style,
+        ]}
       >
-        {title}
-      </Vw.Text>
-    </TouchableOpacity>
+        {icon ? (
+          <>{icon}</>
+        ) : (
+          title && (
+            <Vw.Text
+              type="default"
+              align="center"
+              lightColor={colors.menuTextItemNotSelected}
+              darkColor={colors.menuTextItemNotSelected}
+            >
+              {title}
+            </Vw.Text>
+          )
+        )}
+      </TouchableOpacity>
+    </Vw>
   );
 };
+
 
 export default Btn;
